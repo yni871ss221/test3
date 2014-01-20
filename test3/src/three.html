@@ -2,9 +2,42 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>three.js test</title>
 </head>
 <body>
-
+	<div id="webgl_view" style="border: 1px solid; width: 400px; height: 400px;"></div>
 </body>
+
+<script src="three.js"></script>
+<script>
+
+	// オブジェクト
+	var box = new THREE.Mesh(new THREE.CubeGeometry(1,1,1), new THREE.MeshPhongMaterial({color:0x00ff00}));
+
+	// ライト
+	var light = new THREE.DirectionalLight(0xffffff);
+	light.position.x = 0;
+	light.position.y = 10;
+	light.position.z = 10;
+
+	// シーン
+	var scene = new THREE.Scene();
+	scene.add(box);
+	scene.add(light);
+
+	// カメラ
+	var camera = new THREE.PerspectiveCamera(90, 1.0, 0.1, 10);
+	camera.position.x = 0;
+	camera.position.y = 0;
+	camera.position.z = 2;
+
+	// レンダラ
+	var renderer = new THREE.WebGLRenderer();
+	renderer.setSize(400,400);
+	document.getElementById('webgl_view').appendChild(renderer.domElement);
+	renderer.render(scene, camera);
+
+</script>
+
+
 </html>
