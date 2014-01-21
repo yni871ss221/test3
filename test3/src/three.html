@@ -35,9 +35,26 @@
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize(400,400);
 	document.getElementById('webgl_view').appendChild(renderer.domElement);
-	renderer.render(scene, camera);
 
+	// アニメーション
+	render();
+	function render() {
+
+		renderer.render(scene, camera);
+		requestAnimationFrame(render);
+	}
+
+	document.onkeydown = function (e){
+
+		// InternetExplorer 用
+		if (!e)	e = window.event;
+
+		var key_code = e.keyCode
+
+		// 左キーが押された
+		if(key_code == 37)	box.position.x -= 0.05;
+		// 右キーが押された
+		if(key_code == 39)	box.position.x += 0.05;
+	};
 </script>
-
-
 </html>
